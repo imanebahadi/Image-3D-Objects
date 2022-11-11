@@ -220,11 +220,6 @@ void MainWindow::ToreMeshExample()
     meshColor = MeshColor(ToreMesh, cols, ToreMesh.VertexIndexes());
 
     auto end = std::chrono::high_resolution_clock::now(); // end timer
-    long long timer = (end - start).count() / 1000000; // Get the elapse time in milliseconds
-    //uiw->elapseTime->setText(QString::number(timer));
-    std::cout<<"time tore "<<timer << std::endl;
-
-    auto end = std::chrono::high_resolution_clock::now(); // end timer
     long long timer = (end - start).count() ; // Get the elapse time in milliseconds
     std::cout<<"time tore "<<timer << std::endl;
     UpdateGeometry();
