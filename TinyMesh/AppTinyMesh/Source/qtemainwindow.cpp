@@ -63,13 +63,6 @@ void MainWindow::BoxMeshExample()
 {
     Mesh boxMesh = Mesh(Box(1.0));
 
-    Mesh cyl = Mesh(Cylindre(Vector(0,0,0), 3, 5));
-    Vector Centre = Vector(0,0,0);
-    Vector Peak = Vector(0,4,0);
-    double Rayon = 2;
-
-
-    Mesh coneMesh = Mesh(Cone(Centre,Rayon,Peak));
     //boxMesh.RotateX(45);
     //boxMesh.RotateY(45);
     //boxMesh.RotateZ(45);
@@ -106,6 +99,7 @@ void MainWindow::SphereImplicitExample()
 
 void MainWindow::cylindreMeshExample()
 {
+    auto start = std::chrono::high_resolution_clock::now();
     Mesh cyl = Mesh(Cylindre(Vector(0,0,0), 3, 5));
 
     std::vector<Color> cols;
@@ -114,11 +108,15 @@ void MainWindow::cylindreMeshExample()
         cols[i] = Color(double(i) / 6.0, fmod(double(i) * 39.478378, 1.0), 0.0);
 
     meshColor = MeshColor(cyl, cols, cyl.VertexIndexes());
+    auto end = std::chrono::high_resolution_clock::now(); // end timer
+    long long timer = (end - start).count() ; // Get the elapse time in milliseconds
+    std::cout<<"time cylindre "<<timer << std::endl;
     UpdateGeometry();
 }
 
 void MainWindow::coneMeshExample()
 {
+    auto start = std::chrono::high_resolution_clock::now();
     Vector Centre = Vector(0,0,0);
     Vector Peak = Vector(0,4,0);
     double Rayon = 2;
@@ -132,6 +130,9 @@ void MainWindow::coneMeshExample()
     cols[i] = Color(double(i) / 6.0, fmod(double(i) * 39.478378, 1.0), 0.0);
 
     meshColor = MeshColor(coneMesh, cols, coneMesh.VertexIndexes());
+    auto end = std::chrono::high_resolution_clock::now(); // end timer
+    long long timer = (end - start).count() ; // Get the elapse time in milliseconds
+    std::cout<<"time cone "<<timer << std::endl;
     UpdateGeometry();
 }
 
@@ -152,25 +153,19 @@ void MainWindow::capsuleMeshExample()
 
     meshColor = MeshColor(CapsuleMesh, cols, CapsuleMesh.VertexIndexes());
 
-    //CapsuleMesh.RotateX(45);
     auto end = std::chrono::high_resolution_clock::now(); // end timer
-    long long timer = (end - start).count() / 1000000; // Get the elapse time in milliseconds
-    //uiw->elapseTime->setText(QString::number(timer));
-    std::cout<<"time "<<timer << std::endl;
-
+    long long timer = (end - start).count() ; // Get the elapse time in milliseconds
+    std::cout<<"time capsule "<<timer << std::endl;
     UpdateGeometry();
 }
 
 void MainWindow::TetraedreMeshExample()
 {
+    auto start = std::chrono::high_resolution_clock::now();
     Vector vect;
 
-
     Mesh TetraedreMesh = Mesh(Tetraedre());
-
     TetraedreMesh.Scale(Vector(2,5,2));
-
-
 
     std::vector<Color> cols;
     cols.resize(TetraedreMesh.Vertexes());
@@ -178,16 +173,17 @@ void MainWindow::TetraedreMeshExample()
     cols[i] = Color(double(i) / 6.0, fmod(double(i) * 39.478378, 1.0), 0.0);
 
     meshColor = MeshColor(TetraedreMesh, cols, TetraedreMesh.VertexIndexes());
-    //TetraedreMesh.RotateX(80);
+    auto end = std::chrono::high_resolution_clock::now(); // end timer
+    long long timer = (end - start).count() ; // Get the elapse time in milliseconds
+    std::cout<<"time tetraedre "<<timer << std::endl;
     UpdateGeometry();
-
-
 }
 
 
 
 void MainWindow::SphereMeshExample()
 {
+    auto start = std::chrono::high_resolution_clock::now();
     Vector Centre = Vector(0,0,0);
     int Rayon = 2;
     int DisquesTriangles = 40;
@@ -201,6 +197,9 @@ void MainWindow::SphereMeshExample()
     cols[i] = Color(double(i) / 6.0, fmod(double(i) * 39.478378, 1.0), 0.0);
 
     meshColor = MeshColor(SphereMesh, cols, SphereMesh.VertexIndexes());
+    auto end = std::chrono::high_resolution_clock::now(); // end timer
+    long long timer = (end - start).count() ; // Get the elapse time in milliseconds
+    std::cout<<"time sphere "<<timer << std::endl;
     UpdateGeometry();
 }
 
@@ -225,18 +224,18 @@ void MainWindow::ToreMeshExample()
     //uiw->elapseTime->setText(QString::number(timer));
     std::cout<<"time tore "<<timer << std::endl;
 
+    auto end = std::chrono::high_resolution_clock::now(); // end timer
+    long long timer = (end - start).count() ; // Get the elapse time in milliseconds
+    std::cout<<"time tore "<<timer << std::endl;
     UpdateGeometry();
 }
 
 
 void MainWindow::DisqueMeshExample()
 {
+    auto start = std::chrono::high_resolution_clock::now();
     Vector vect;
-
-
     Mesh DisqueMesh = Mesh(Disque(vect, 1.0));
-
-
 
     std::vector<Color> cols;
     cols.resize(DisqueMesh.Vertexes());
@@ -244,8 +243,9 @@ void MainWindow::DisqueMeshExample()
     cols[i] = Color(double(i) / 6.0, fmod(double(i) * 39.478378, 1.0), 0.0);
 
     meshColor = MeshColor(DisqueMesh, cols, DisqueMesh.VertexIndexes());
-
-
+    auto end = std::chrono::high_resolution_clock::now(); // end timer
+    long long timer = (end - start).count() ; // Get the elapse time in milliseconds
+    std::cout<<"time disque "<<timer << std::endl;
     UpdateGeometry();
 }
 
@@ -268,8 +268,7 @@ void MainWindow::PyramideMeshExample()
 
     auto end = std::chrono::high_resolution_clock::now(); // end timer
     long long timer = (end - start).count() ; // Get the elapse time in milliseconds
-    //uiw->elapseTime->setText(QString::number(timer));
-    std::cout<<"time pyra "<<timer << std::endl;
+    std::cout<<"time pyramide "<<timer << std::endl;
 
     UpdateGeometry();
 }
@@ -299,3 +298,4 @@ void MainWindow::ResetCamera()
 {
 	meshWidget->SetCamera(Camera(Vector(-10.0), Vector(0.0)));
 }
+
